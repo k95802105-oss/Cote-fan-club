@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cote de Pablo Fan Club — Join Us</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@200;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --deep: #0d0b08;
+      --dark: #1a1612;
+      --card: #201c17;
+      --border: rgba(201,168,76,0.25);
+      --text: #f0e8d8;
+      --muted: #9a8f7a;
+    }
+    body {
+      background-color: var(--deep);
+      color: var(--text);
+      font-family: 'Josefin Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px 80px;
+      position: relative;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.07) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 80% 80%, rgba(201,168,76,0.04) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .container { width: 100%; max-width: 620px; position: relative; z-index: 1; }
+    .header { text-align: center; margin-bottom: 48px; animation: fadeDown 0.9s ease both; }
+    .header .eyebrow { font-family: 'Josefin Sans', sans-serif; font-weight: 200; font-size: 11px; letter-spacing: 0.5em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(42px, 8vw, 68px); font-weight: 300; line-height: 1.05; letter-spacing: -0.01em; color: var(--text); margin-bottom: 8px; }
+    .header h1 em { font-style: italic; color: var(--gold-light); }
+    .header .subtitle { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 18px; color: var(--muted); margin-top: 12px; font-weight: 300; }
+    .divider { display: flex; align-items: center; gap: 16px; margin: 24px 0 40px; opacity: 0.6; }
+    .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); }
+    .divider-star { color: var(--gold); font-size: 14px; }
+    .form-card { background: var(--card); border: 1px solid var(--border); border-radius: 2px; padding: 48px 44px; box-shadow: 0 0 0 1px rgba(201,168,76,0.05), 0 40px 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(201,168,76,0.1); animation: fadeUp 1s ease 0.2s both; }
+    .section-label { font-size: 9px; font-weight: 600; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+    .field-group { margin-bottom: 28px; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    label { display: block; font-size: 10px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    input[type="text"], input[type="email"], input[type="date"], select, textarea { width: 100%; background: rgba(255,255,255,0.03); border: 1px solid rgba(201,168,76,0.2); border-radius: 1px; color: var(--text); font-family: 'Josefin Sans', sans-serif; font-size: 14px; font-weight: 200; letter-spacing: 0.05em; padding: 13px 16px; transition: border-color 0.3s, background 0.3s, box-shadow 0.3s; outline: none; appearance: none; -webkit-appearance: none; }
+    input[type="date"] { color-scheme: dark; }
+    input:focus, select:focus, textarea:focus { border-color: var(--gold); background: rgba(201,168,76,0.04); box-shadow: 0 0 0 3px rgba(201,168,76,0.08); }
+    select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a84c' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 40px; cursor: pointer; }
+    select option { background: var(--dark); color: var(--text); }
+    textarea { resize: vertical; min-height: 110px; line-height: 1.6; }
+    input::placeholder, textarea::placeholder { color: rgba(154,143,122,0.4); }
+    .checkbox-group { display: flex; flex-direction: column; gap: 12px; }
+    .checkbox-item { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; padding: 10px 14px; border: 1px solid transparent; border-radius: 1px; transition: border-color 0.2s, background 0.2s; }
+    .checkbox-item:hover { border-color: var(--border); background: rgba(201,168,76,0.03); }
+    .checkbox-item input[type="checkbox"] { width: 18px; height: 18px; min-width: 18px; border: 1px solid rgba(201,168,76,0.35); background: transparent; border-radius: 0; cursor: pointer; position: relative; appearance: none; -webkit-appearance: none; margin-top: 1px; padding: 0; transition: background 0.2s, border-color 0.2s; }
+    .checkbox-item input[type="checkbox"]:checked { background: var(--gold); border-color: var(--gold); }
+    .checkbox-item label { margin: 0; font-size: 13px; font-weight: 200; letter-spacing: 0.04em; text-transform: none; color: var(--text); cursor: pointer; }
+    .radio-group { display: flex; gap: 14px; flex-wrap: wrap; }
+    .radio-item { flex: 1; min-width: 120px; }
+    .radio-item input[type="radio"] { display: none; }
+    .radio-item label { display: block; padding: 11px 16px; border: 1px solid rgba(201,168,76,0.2); text-align: center; font-size: 11px; letter-spacing: 0.2em; color: var(--muted); cursor: pointer; transition: all 0.25s; font-weight: 400; border-radius: 1px; margin: 0; text-transform: uppercase; }
+    .radio-item input[type="radio"]:checked + label { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.07); }
+    .radio-item label:hover { border-color: rgba(201,168,76,0.5); color: var(--text); }
+    .section-spacer { height: 1px; background: var(--border); margin: 36px 0; }
+    .submit-wrap { margin-top: 40px; text-align: center; }
+    button[type="submit"] { font-family: 'Josefin Sans', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.45em; text-transform: uppercase; color: var(--deep); background: linear-gradient(135deg, var(--gold-light), var(--gold)); border: none; padding: 18px 52px; cursor: pointer; border-radius: 1px; position: relative; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 24px rgba(201,168,76,0.25); }
+    button[type="submit"]:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(201,168,76,0.35); }
+    button[type="submit"]:active { transform: translateY(0); }
+    .fine-print { font-size: 11px; color: var(--muted); margin-top: 18px; letter-spacing: 0.03em; font-weight: 200; }
+    .success-msg { display: none; text-align: center; padding: 48px 32px; animation: fadeUp 0.6s ease both; }
+    .success-msg .check { font-size: 48px; color: var(--gold); margin-bottom: 20px; display: block; }
+    .success-msg h2 { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; margin-bottom: 12px; }
+    .success-msg p { font-size: 14px; color: var(--muted); font-weight: 200; letter-spacing: 0.04em; }
+    .footer { margin-top: 40px; text-align: center; font-size: 11px; color: rgba(154,143,122,0.5); letter-spacing: 0.15em; animation: fadeUp 1s ease 0.5s both; }
+    @keyframes fadeDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 520px) { .form-card { padding: 32px 24px; } .field-row { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="eyebrow">Official Fan Club</div>
+    <h1>Côte<br><em>de Pablo</em></h1>
+    <p class="subtitle">Join the family. Celebrate greatness.</p>
+  </div>
+  <div class="divider"><span class="divider-star">✦</span></div>
+  <div class="form-card">
+    <form action="https://formspree.io/f/xqegnraj" method="POST">
+      <div class="section-label">Your Details</div>
+      <div class="field-row field-group">
+        <div>
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" name="firstName" placeholder="e.g. Maria" required />
+        </div>
+        <div>
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" name="lastName" placeholder="e.g. Hernandez" required />
+        </div>
+      </div>
+      <div class="field-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="your@email.com" required />
+      </div>
+      <div class="field-row field-group">
+        <div>
+          <label for="dob">Date of Birth</label>
+          <input type="date" id="dob" name="dob" />
+        </div>
+        <div>
+          <label for="country">Country</label>
+          <select id="country" name="country" required>
+            <option value="" disabled selected>Select country</option>
+            <option>United States</option>
+            <option>Chile</option>
+            <option>United Kingdom</option>
+            <option>Canada</option>
+            <option>Australia</option>
+            <option>Spain</option>
+            <option>Mexico</option>
+            <option>Argentina</option>
+            <option>France</option>
+            <option>Germany</option>
+            <option>Brazil</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="section-spacer"></div>
+      <div class="section-label">Fan Profile</div>
+      <div class="field-group">
+        <label>How long have you been a fan?</label>
+        <div class="radio-group">
+          <div class="radio-item">
+            <input type="radio" name="fanSince" id="newFan" value="Just started" />
+            <label for="newFan">Just started</label>
+          </div>
+          <div class="radio-item">
+            <input type="radio" name="fanSince" id="yesFan" value="1–5 Years" />
+            <label for="yesFan">1–5 Years</label>
+          </div>
+          <div class="radio-item">
+            <input type="radio" name="fanSince" id="longFan" value="5–10 Years" />
+            <label for="longFan">5–10 Years</label>
+          </div>
+          <div class="radio-item">
+            <input type="radio" name="fanSince" id="devotedFan" value="10+ Years" />
+            <label for="devotedFan">10+ Years</label>
+          </div>
+        </div>
+      </div>
+      <div class="field-group">
+        <label for="favRole">Favourite Role of Hers</label>
+        <select id="favRole" name="favRole">
+          <option value="" disabled selected>Select a role</option>
+          <option>Ziva David — NCIS</option>
+          <option>Beatriz Santos — The Jury</option>
+          <option>Isabel Díaz — The 33</option>
+          <option>Another role</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>What do you love about Côte? (select all that apply)</label>
+        <div class="checkbox-group">
+          <div class="checkbox-item">
+            <input type="checkbox" id="acting" name="love" value="Her extraordinary acting talent" />
+            <label for="acting">Her extraordinary acting talent</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="persona" name="love" value="Her warmth and genuine personality" />
+            <label for="persona">Her warmth and genuine personality</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="singing" name="love" value="Her singing and musical gifts" />
+            <label for="singing">Her singing and musical gifts</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="advocacy" name="love" value="Her advocacy and humanitarian work" />
+            <label for="advocacy">Her advocacy and humanitarian work</label>
+          </div>
+          <div class="checkbox-item">
+            <input type="checkbox" id="inspiration" name="love" value="She inspires me in my own life" />
+            <label for="inspiration">She inspires me in my own life</label>
+          </div>
+        </div>
+      </div>
+      <div class="field-group">
+        <label for="message">A Message for Côte (optional)</label>
+        <textarea id="message" name="message" placeholder="Share what she means to you…"></textarea>
+      </div>
+      <div class="section-spacer"></div>
+      <div class="section-label">Stay Connected</div>
+      <div class="field-group">
+        <label for="instagram">Instagram Handle (optional)</label>
+        <input type="text" id="instagram" name="instagram" placeholder="@yourhandle" />
+      </div>
+      <div class="field-group">
+        <div class="checkbox-item" style="padding:0;">
+          <input type="checkbox" id="newsletter" name="newsletter" value="Yes! Sign me up for fan club news & updates about Côte de Pablo" />
+          <label for="newsletter" style="font-size:13px; text-transform:none; letter-spacing:0.03em; font-weight:200; color:var(--text); cursor:pointer;">
+            Yes! Sign me up for fan club news & updates about Côte de Pablo
+          </label>
+        </div>
+      </div>
+      <div class="submit-wrap">
+        <button type="submit">Become a Fan ✦</button>
+        <p class="fine-print">Your information will be sent to officialfourroom@gmail.com</p>
+      </div>
+    </form>
+  </div>
+  <div class="footer">
+    Côte de Pablo Fan Club &nbsp;·&nbsp; Est. with love
+  </div>
+</div>
+</body>
+  </html>
