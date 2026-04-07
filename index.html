@@ -3,69 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Côte de Pablo Fan Club Registration</title>
+    <title>Côte de Pablo Fan Club</title>
     <style>
         body {
+            background-color: #121212;
+            color: #FFD700;
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
+        }
+        header {
+            text-align: center;
             padding: 20px;
         }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        .form-section {
+            margin: 20px auto;
+            width: 80%;
         }
-        h1 {
-            color: #333;
-        }
-        label {
-            display: block;
-            margin: 15px 0 5px;
-        }
-        input[type="text"], input[type="email"], textarea {
+        input, select, textarea {
             width: 100%;
             padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        button {
-            display: block;
-            background-color: #007BFF;
-            color: white;
-            padding: 10px 15px;
+            margin: 10px 0;
             border: none;
             border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
         }
-        button:hover {
-            background-color: #0056b3;
+        .submit-button {
+            background: linear-gradient(to right, #FFD700, #FFCC00);
+            color: black;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        .submit-button:hover {
+            opacity: 0.8;
+        }
+        .success-message {
+            display: none;
+            color: green;
+            text-align: center;
+            padding: 10px;
+            background-color: #222;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Côte de Pablo Fan Club Registration</h1>
-        <form>
-            <label for="fullName">Full Name:</label>
-            <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
-
-            <label for="email">Email Address:</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email address" required>
-
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" placeholder="Choose a username" required>
-
-            <label for="bio">Short Bio:</label>
-            <textarea id="bio" name="bio" rows="4" placeholder="Tell us about yourself" required></textarea>
-
-            <button type="submit">Register</button>
-        </form>
-    </div>
+    <header>
+        <h1>Côte de Pablo Fan Club</h1>
+    </header>
+    <form id="fan-club-form" class="form-section">
+        <h2>Your Details</h2>
+        <input type="text" name="firstName" placeholder="First Name" required />
+        <input type="text" name="lastName" placeholder="Last Name" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="date" name="dob" placeholder="Date of Birth" required />
+        <select name="country" required>
+            <option value="">Select your country</option>
+            <option value="US">United States</option>
+            <option value="UK">United Kingdom</option>
+            <option value="CA">Canada</option>
+            <!-- Add other countries as needed -->
+        </select>
+        <h2>Fan Profile</h2>
+        <label>How long have you been a fan?</label>
+        <input type="radio" name="fanDuration" value="Less than a year" required /> Less than a year
+        <input type="radio" name="fanDuration" value="1-3 years" required /> 1-3 years
+        <input type="radio" name="fanDuration" value="3+ years" required /> 3+ years
+        <select name="favoriteRole" required>
+            <option value="">Select your favorite role</option>
+            <option value="Role1">Role 1</option>
+            <option value="Role2">Role 2</option>
+            <option value="Role3">Role 3</option>
+            <!-- Add other roles as needed -->
+        </select>
+        <h2>What do you love about Côte?</h2>
+        <input type="checkbox" name="love[]" value="Music" /> Music
+        <input type="checkbox" name="love[]" value="Acting" /> Acting
+        <input type="checkbox" name="love[]" value="Charity" /> Charity
+        <textarea name="message" placeholder="Your message..." required></textarea>
+        <input type="text" name="instagram" placeholder="Instagram Handle (optional)" />
+        <label>
+            <input type="checkbox" name="newsletter" /> Subscribe to our newsletter
+        </label>
+        <button type="submit" class="submit-button">Submit</button>
+        <div class="success-message">Thank you for joining the Côte de Pablo Fan Club!</div>
+    </form>
+    <script>
+        const form = document.getElementById('fan-club-form');
+        const successMessage = document.querySelector('.success-message');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            successMessage.style.display = 'block';
+            form.reset();
+        });
+    </script>
 </body>
 </html>
