@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Côte de Pablo Fan Club Registration</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; }
+        .container { max-width: 600px; margin: 50px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h2 { text-align: center; }
+        label { display: block; margin-bottom: 5px; }
+        input[type="text"], input[type="email"], textarea, select { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px; }
+        input[type="checkbox"] { margin-right: 10px; }
+        button { width: 100%; padding: 10px; background-color: #007BFF; color: white; border: none; border-radius: 4px; }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Côte de Pablo Fan Club Registration</h2>
+        <form>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="country">Country</label>
+            <select id="country" name="country" required>
+                <option value="">Select your country</option>
+                <option value="USA">USA</option>
+                <option value="Canada">Canada</option>
+                <option value="UK">UK</option>
+                <option value="Australia">Australia</option>
+                <option value="Others">Others</option>
+            </select>
+
+            <label>Favorite Roles</label>
+            <input type="checkbox" name="roles" value="Role 1"> Role 1<br>
+            <input type="checkbox" name="roles" value="Role 2"> Role 2<br>
+            <input type="checkbox" name="roles" value="Role 3"> Role 3<br>
+
+            <label for="fanProfile">Fan Profile</label>
+            <input type="text" id="fanProfile" name="fanProfile">
+
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4"></textarea>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</body>
+</html>
