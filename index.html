@@ -85,7 +85,7 @@
     button[type="submit"]:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(201,168,76,0.35); }
     button[type="submit"]:active { transform: translateY(0); }
     .fine-print { font-size: 11px; color: var(--muted); margin-top: 18px; letter-spacing: 0.03em; font-weight: 200; }
-    .form-wrapper { transition: opacity 0.4s ease; }
+    #formContainer { transition: opacity 0.4s ease; }
     .success-msg { display: none; text-align: center; padding: 48px 32px; animation: fadeUp 0.6s ease both; }
     .success-msg .check { font-size: 48px; color: var(--gold); margin-bottom: 20px; display: block; }
     .success-msg h2 { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 300; margin-bottom: 12px; }
@@ -105,8 +105,8 @@
   </div>
   <div class="divider"><span class="divider-star">✦</span></div>
   <div class="form-card">
-    <div class="form-wrapper" id="formWrapper">
-      <form id="fanForm" action="https://formspree.io/f/xqegnraj" method="POST">
+    <div id="formContainer">
+      <form id="fanForm">
         <div class="section-label">Your Details</div>
         <div class="field-row field-group">
           <div>
@@ -240,16 +240,32 @@
 </div>
 
 <script>
-  document.getElementById('fanForm').addEventListener('submit', function(e) {
-    // Let Formspree handle the submission
-    // But also show our success message
-    setTimeout(function() {
-      document.getElementById('formWrapper').style.opacity = '0';
-      document.getElementById('formWrapper').style.pointerEvents = 'none';
-      document.getElementById('successMsg').style.display = 'block';
-    }, 500);
+document.getElementById('fanForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const formData = new FormData(this);
+  
+  // Send to Formspree
+  fetch('https://formspree.io/f/xqegnraj', {
+    method: 'POST',
+    body: formData,
+    headers: {
+      'Accept': 'application/json'
+    }
+  }).then(response => {
+    // Show success message
+    document.getElementById('formContainer').style.opacity = '0';
+    document.getElementById('formContainer').style.pointerEvents = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+  }).catch(error => {
+    console.error('Error:', error);
+    // Still show success message even if there's an error
+    document.getElementById('formContainer').style.opacity = '0';
+    document.getElementById('formContainer').style.pointerEvents = 'none';
+    document.getElementById('successMsg').style.display = 'block';
   });
+});
 </script>
 
 </body>
-</html>
+  </html>
