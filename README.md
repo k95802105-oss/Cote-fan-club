@@ -1,55 +1,25 @@
-# Côte de Pablo Fan Club - Setup Guide
+# Côte de Pablo Fan Club
 
-Welcome to the Côte de Pablo Fan Club project! Follow this guide to set up the project on your local machine.
+A static fan club registration site hosted on Netlify. Registrations are collected through Netlify Forms, so the project does not require a custom server or email credentials.
 
-## 1. Installation Steps
+## Run locally
 
-1. **Clone the repository**:
+1. Install the Netlify CLI if it is not already available:
+
    ```bash
-   git clone https://github.com/k95802105-oss/cote-fan-club.git
-   cd cote-fan-club
+   npm install --global netlify-cli
    ```
 
-2. **Install dependencies**:
+2. Start the local Netlify development environment:
+
    ```bash
-   npm install
+   npm run dev
    ```
 
-## 2. Gmail Configuration Instructions
+3. Open `http://localhost:8889`.
 
-To allow the application to send emails, you need to configure your Gmail accounts. Follow these steps:
+Netlify Forms processing is available when the site runs through `netlify dev`. Submissions appear in the site’s Forms dashboard after deployment.
 
-1. Go to [Google Account Security](https://myaccount.google.com/security).
-2. Scroll down to the "Less secure app access" section and turn it ON. If you have 2-Step Verification enabled, proceed to the next step.
+## Deploy
 
-## 3. How to Get App-Specific Password
-
-1. Navigate to the [App Passwords section](https://myaccount.google.com/apppasswords).
-2. Select the app you want to generate a password for (choose "Mail") and the device (choose "Other") to label it.
-3. Click on **Generate** and note the provided password.
-
-## 4. Environment Variable Setup
-
-Create a `.env` file in the root directory of the project. Add the following configuration variables:
-
-```plaintext
-GMAIL_USER=your_email@gmail.com
-GMAIL_PASS=your_app_specific_password
-``` 
-Make sure to replace `your_email@gmail.com` and `your_app_specific_password` with your Gmail address and the generated app-specific password respectively.
-
-## 5. Running the Server
-
-To start the server, use the following command:
-```bash
-npm start
-```
-Open your browser and navigate to `http://localhost:3000` to access the application.
-
-## 6. Testing the Form
-
-To test the form functionalities, you can manually navigate to the form page on your local server, or you can run specific test scripts if available within the project. Ensure that your server is running before testing.
-
----
-
-For any issues or contributions, feel free to open an issue or pull request in the repository!
+The deployment configuration publishes the `public` directory directly. No build command or application server is required.
