@@ -1,12 +1,18 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
+const { inject } = require('@vercel/analytics');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Inject Vercel Analytics
+inject();
+
 // Middleware
 app.use(bodyParser.json());
+app.use(express.static('.'));
+app.use(express.static('public'));
 
 // Nodemailer configuration
 const transporter = nodemailer.createTransport({
